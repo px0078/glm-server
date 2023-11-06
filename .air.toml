@@ -1,0 +1,9 @@
+
+[build]
+# 只需要写你平常编译使用的shell命令。你也可以使用 `make`
+# Windows平台示例: cmd = "go build -o tmp\main.exe ."
+cmd = "go build -o ./tmp/main ./"
+
+# required on windows, fsnotify is not reliable on windows
+poll = true
+poll_interval = 500

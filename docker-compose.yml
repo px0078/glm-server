@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+    networks:
+      - server-network
+
+  glm-server:
+    build:
+      context: .
+      # Correct the path to your Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    # Important to bind/mount your codebase dir to /app dir for live reload
+    volumes:
+      - ./:/glm
+
+volumes:
+  dbdata6:
+
+networks:
+  server-network:
+    driver: bridge
