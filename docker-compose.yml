@@ -19,7 +19,7 @@ services:
       - 8000:8000
     # Important to bind/mount your codebase dir to /app dir for live reload
     volumes:
-      - ./:/glm
+      - ./:/app
 
 volumes:
   dbdata6:
