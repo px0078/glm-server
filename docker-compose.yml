@@ -1,16 +1,20 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:latest
-    ports:
-      - '27017:27017'
+  db:
+    image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
     volumes:
-      - dbdata6:/data/db
+      - db-data:/etc/data
+    environment:
+      MYSQL_ROOT_PASSWORD: code89757
     networks:
       - server-network
+    ports:
+      - 3306:3306
 
-  glm-server:
+  web-server:
     build:
       context: .
       # Correct the path to your Dockerfile
@@ -19,10 +23,13 @@ services:
       - 9000:9000
     # Important to bind/mount your codebase dir to /app dir for live reload
     volumes:
-      - ./:/app
+      - web-data:/app
+    networks:
+      - server-network
 
 volumes:
-  dbdata6:
+  db-data: 
+  web-data:
 
 networks:
   server-network:

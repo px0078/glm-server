@@ -4,13 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	middleware "glm-server/glm/middleware"
-	router "glm-server/glm/router"
 	"log"
 	http "net/http"
 	"os"
 	"os/signal"
 	"time"
+	middleware "web-server/middleware"
+	router "web-server/router"
 
 	mux "github.com/gorilla/mux"
 )
